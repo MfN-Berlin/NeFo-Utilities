@@ -1,0 +1,11 @@
+name = NeFo Blocks Builder
+description = Build custom blocks for the frontpage.
+core = 7.x
+package = NEFO UTILITIES
+
+; Information added by NeFo
+version = "7.x-1.0"
+core = "7.x"
+
+
+

@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * Implements hook_block_info().
+ */
+function nefo_blocks_builder_block_info() {
+  $blocks = array();
+
+  $blocks['nefo_footer_banner'] = array(
+    'info' => t('NeFo Footer Banner'),
+  );
+
+  return $blocks;
+}
+
+/**
+* Implements hook_block_view().
+*/
+function nefo_blocks_builder_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'nefo_footer_banner':
+      $block['subject'] = '';
+      $block['content'] = _nefo_blocks_builder_nefo_footer_banner_content();
+      break;
+  }
+
+  return $block;
+}
+
+function _nefo_blocks_builder_nefo_footer_banner_content() {
+  $output = '      <div class="nefo-footer-banner">
+        <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col1"><a >Publikationen</a></div></div>
+        <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col2"><a >Workshops</a></div></div>
+        <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col3"><a >Newsletter</a></div></div>
+        <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col4"><a >Blog</a></div></div>
+      </div>';
+  
+  return $output;
+}
+
