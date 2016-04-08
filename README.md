@@ -1,2 +1,2 @@
 # NeFo-Utilities
-Creates custom blocks.
+Create custom blocks.
