@@ -34,7 +34,7 @@ function _nefo_blocks_builder_nefo_footer_banner_content() {
         <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col1"><a href="/schnittstellen/produkte">'. t('NeFo Products') .'</a></div></div>
         <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col2"><a href="/schnittstellen/produkte/workshops">'. t('Workshops') .'</a></div></div>
         <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col3"><a >'. t('Newsletter') .'</a></div></div>
-        <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col4"><a href="/blog">'. t('Blog') .'</a></div></div>
+        <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col4"><a href="/blogs">'. t('Blogs') .'</a></div></div>
       </div>';
   
   return $output;
