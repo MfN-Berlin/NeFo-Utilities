@@ -1,2 +1,3 @@
 # NeFo-Utilities
-Create custom blocks.
+
+A collection of modules with rather simple behavior for biodiversity.de
