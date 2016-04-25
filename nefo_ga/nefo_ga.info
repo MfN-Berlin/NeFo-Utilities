@@ -1,0 +1,11 @@
+name = NeFo Google Analytics
+description = Includes Google Analytics Script on every page
+core = 7.x
+package = NEFO UTILITIES
+
+; Information added by NeFo
+version = "7.x-1.0"
+core = "7.x"
+
+
+
