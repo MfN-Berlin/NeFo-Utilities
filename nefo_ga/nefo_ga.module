@@ -1,6 +1,5 @@
 <?php
 
 function nefo_ga_preprocess_page($vars) {
-  krumo($vars);
   drupal_add_js(drupal_get_path('module', 'nefo_ga') . '/ga.js');
 }
