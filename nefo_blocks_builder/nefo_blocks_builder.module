@@ -9,12 +9,25 @@ function nefo_blocks_builder_block_info() {
   $blocks['nefo_footer_banner'] = array(
     'info' => t('NeFo Footer Banner'),
   );
-
+  
   $blocks['nefo_feature_map'] = array(
     'info' => t('Researchmap'),
     'description' => t('A block to feature the research map on the frontpage'),
   );
 
+  $blocks['nefo_newsletter2go_biodiv_news'] = array(
+    'info' => t('Newsletter2Go Biodiv News'),
+    'description' => t('Newsletter subscription form for Biodiv News'),
+  );
+  $blocks['nefo_newsletter2go_ipbes_news'] = array(
+    'info' => t('Newsletter2Go IPBES News'),
+    'description' => t('Newsletter subscription form for IPBES News'),
+  );
+  $blocks['nefo_newsletter2go_press_news'] = array(
+    'info' => t('Newsletter2Go Press News'),
+    'description' => t('Newsletter subscription form for Press News'),
+  );
+  
   return $blocks;
 }
 
@@ -32,6 +45,18 @@ function nefo_blocks_builder_block_view($delta = '') {
     case 'nefo_feature_map':
       $block['subject'] = '';
       $block['content'] = _nefo_blocks_builder_nefo_feature_map_content();
+      break;
+    case 'nefo_newsletter2go_biodiv_news':
+      $block['subject'] = t('Biodiversity Research Newsletter');
+      $block['content'] = _nefo_newsletter2go_biodiv_news_content();
+      break;
+    case 'nefo_newsletter2go_ipbes_news':
+      $block['subject'] = t('IPBES Newsletter');      
+      $block['content'] = _nefo_newsletter2go_ipbes_news_content();
+      break;
+    case 'nefo_newsletter2go_press_news':
+      $block['subject'] = t('Press Distribution');
+      $block['content'] = _nefo_newsletter2go_press_news_content();
       break;
   }
 
@@ -111,4 +136,140 @@ function _nefo_blocks_builder_nefo_feature_map_content() {
   );
   return $block;
 }
+
+// Biodivdersitätsforschungs-Newsletter
+function _nefo_newsletter2go_biodiv_news_content() {
+    $output = '<form id="nl2go--form" action="https://app.newsletter2go.com/de/recipients/index/subscribe/" method="post" accept-charset="utf-8">
+<table border="0"><tbody>
+<tr><td align="left" style="padding-right: 8px">E-Mail*
+    </td>
+    <td>
+        <input type="text" name="nl2go--mail" id="nl2go--mail" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
+    </td>
+</tr>
+<tr><td align="left" style="padding-right: 8px">Vorname
+    </td>
+    <td>
+        <input type="text" name="nl2go--firstname" id="nl2go--firstname" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
+    </td>
+</tr>
+<tr><td align="left" style="padding-right: 8px">Nachname
+    </td>
+    <td>
+        <input type="text" name="nl2go--lastname" id="nl2go--lastname" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
+    </td>
+</tr>
+<tr><td align="left" style="padding-right: 8px">Institution
+    </td>
+    <td>
+        <input type="text" name="nl2go--60805" id="nl2go--60805" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
+    </td>
+</tr>
+<tr>
+    <td>
+    </td><td align="center"><input type="submit" value="Zum Newsletter anmelden" name="nl2go--submit" id="nl2go--submit" style="cursor: pointer; border: 1px solid rgb(169, 192, 65); border-radius: 3px 3px 3px 3px; font-weight: bold; text-align: center; color: rgb(255, 255, 255); background-color: rgb(169, 192, 65); background-image: -moz-linear-gradient(center top , rgb(169, 192, 65), rgb(169, 192, 65)); padding: 4px 8px;  font-size: 100%; margin-top: 8px;width: 100%;">
+<input type="hidden" name="nl2go--key" id="nl2go--key" value="3e8f7bb4d0700aa8605dc2eadc318fadbc6ccd9932ef6fc12d84778fb6f5b10b$11630"><noscript><a href="https://www.newsletter2go.de/newsletter-erstellen/" title="Newsletter erstellen mit Newsletter2Go">Newsletter erstellen mit Newsletter2Go</a></noscript>
+    </td>
+</tr>
+<tr>
+    <td>
+    </td><td align="center"><input type="submit" value="Vom Newsletter abmelden" name="nl2go--unsubscribe" id="nl2go--unsubscribe" style="cursor: pointer; border:1px solid #d7dada; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px; padding: 2px 4px; text-shadow: 0px 0px 0 rgba(0,0,0,0.3);font-weight:normal; text-align: center; color: #333333; background-color: #f4f5f5;  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4f5f5), color-stop(100%, #dfdddd));  background-image: -webkit-linear-gradient(top, #f4f5f5, #dfdddd);  background-image: -moz-linear-gradient(top, #f4f5f5, #dfdddd);  background-image: -ms-linear-gradient(top, #f4f5f5, #dfdddd);  background-image: -o-linear-gradient(top, #f4f5f5, #dfdddd);  background-image: linear-gradient(top, #f4f5f5, #dfdddd);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f4f5f5, endColorstr=#dfdddd); margin-top: 8px;width: 100%;">
+    </td>
+</tr>
+</tbody></table>
+</form>';
+
+    return $output;
+}
+
+// IPBES-Newsletter
+function _nefo_newsletter2go_ipbes_news_content() {
+    $output = '<form id="nl2go--form" action="https://app.newsletter2go.com/de/recipients/index/subscribe/" method="post" accept-charset="utf-8">
+<table border="0"><tbody>
+<tr><td align="left" style="padding-right: 8px">E-Mail*
+    </td>
+    <td>
+        <input type="text" name="nl2go--mail" id="nl2go--mail" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
+    </td>
+</tr>
+<tr><td align="left" style="padding-right: 8px">Vorname
+    </td>
+    <td>
+        <input type="text" name="nl2go--firstname" id="nl2go--firstname" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
+    </td>
+</tr>
+<tr><td align="left" style="padding-right: 8px">Nachname
+    </td>
+    <td>
+        <input type="text" name="nl2go--lastname" id="nl2go--lastname" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
+    </td>
+</tr>
+<tr><td align="left" style="padding-right: 8px">Institution
+    </td>
+    <td>
+        <input type="text" name="nl2go--60805" id="nl2go--60805" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
+    </td>
+</tr>
+<tr>
+    <td>
+    </td><td align="center"><input type="submit" value="Zum Newsletter anmelden" name="nl2go--submit" id="nl2go--submit" style="cursor: pointer; border: 1px solid rgb(169, 192, 65); border-radius: 3px 3px 3px 3px; font-weight: bold; text-align: center; color: rgb(255, 255, 255); background-color: rgb(169, 192, 65); background-image: -moz-linear-gradient(center top , rgb(169, 192, 65), rgb(169, 192, 65)); padding: 4px 8px;  font-size: 100%; margin-top: 8px;width: 100%;">
+<input type="hidden" name="nl2go--key" id="nl2go--key" value="806875c0512e5dec868db1f00057ece9fba0eca0a3c4d73075b9ef6897e983f2$11629"><noscript><a href="https://www.newsletter2go.de/features/newsletter-versand/" title="Newsletter Versand mit Newsletter2Go">Newsletter Versand mit Newsletter2Go</a></noscript>
+    </td>
+</tr>
+<tr>
+    <td>
+    </td><td align="center"><input type="submit" value="Vom Newsletter abmelden" name="nl2go--unsubscribe" id="nl2go--unsubscribe" style="cursor: pointer; border:1px solid #d7dada; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px; padding: 2px 4px; text-shadow: 0px 0px 0 rgba(0,0,0,0.3);font-weight:normal; text-align: center; color: #333333; background-color: #f4f5f5;  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4f5f5), color-stop(100%, #dfdddd));  background-image: -webkit-linear-gradient(top, #f4f5f5, #dfdddd);  background-image: -moz-linear-gradient(top, #f4f5f5, #dfdddd);  background-image: -ms-linear-gradient(top, #f4f5f5, #dfdddd);  background-image: -o-linear-gradient(top, #f4f5f5, #dfdddd);  background-image: linear-gradient(top, #f4f5f5, #dfdddd);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f4f5f5, endColorstr=#dfdddd); margin-top: 8px;width: 100%;">
+    </td>
+</tr>
+</tbody></table>
+</form>';
+    
+    return $output;
+}
+
+// Presseverteiler
+function _nefo_newsletter2go_press_news_content() {
+    $output = '<form id="nl2go--form" action="https://app.newsletter2go.com/de/recipients/index/subscribe/" method="post" accept-charset="utf-8">
+<table border="0"><tbody>
+<tr><td align="left" style="padding-right: 8px">E-Mail*
+    </td>
+    <td>
+        <input type="text" name="nl2go--mail" id="nl2go--mail" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
+    </td>
+</tr>
+<tr><td align="left" style="padding-right: 8px">Vorname
+    </td>
+    <td>
+        <input type="text" name="nl2go--firstname" id="nl2go--firstname" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
+    </td>
+</tr>
+<tr><td align="left" style="padding-right: 8px">Nachname
+    </td>
+    <td>
+        <input type="text" name="nl2go--lastname" id="nl2go--lastname" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
+    </td>
+</tr>
+<tr><td align="left" style="padding-right: 8px">Institution
+    </td>
+    <td>
+        <input type="text" name="nl2go--60805" id="nl2go--60805" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
+    </td>
+</tr>
+<tr>
+    <td>
+    </td><td align="center"><input type="submit" value="Zum Presseverteiler anmelden" name="nl2go--submit" id="nl2go--submit" style="cursor: pointer; border: 1px solid rgb(169, 192, 65); border-radius: 3px 3px 3px 3px; font-weight: bold; text-align: center; color: rgb(255, 255, 255); background-color: rgb(169, 192, 65); background-image: -moz-linear-gradient(center top , rgb(169, 192, 65), rgb(169, 192, 65)); padding: 4px 8px;  font-size: 100%; margin-top: 8px;width: 100%;">
+<input type="hidden" name="nl2go--key" id="nl2go--key" value="24305dcf21fdb8f36ff3507cfd40ebbf9bbaf4e6b40fbb2d2544ea2c8acf7306$11628"><noscript><a href="https://www.newsletter2go.de/newsletter-erstellen/" title="Newsletter erstellen mit Newsletter2Go">Newsletter erstellen mit Newsletter2Go</a></noscript>
+    </td>
+</tr>
+<tr>
+    <td>
+    </td><td align="center"><input type="submit" value="Vom Presseverteiler abmelden" name="nl2go--unsubscribe" id="nl2go--unsubscribe" style="cursor: pointer; border:1px solid #d7dada; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px; padding: 2px 4px; text-shadow: 0px 0px 0 rgba(0,0,0,0.3);font-weight:normal; text-align: center; color: #333333; background-color: #f4f5f5;  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4f5f5), color-stop(100%, #dfdddd));  background-image: -webkit-linear-gradient(top, #f4f5f5, #dfdddd);  background-image: -moz-linear-gradient(top, #f4f5f5, #dfdddd);  background-image: -ms-linear-gradient(top, #f4f5f5, #dfdddd);  background-image: -o-linear-gradient(top, #f4f5f5, #dfdddd);  background-image: linear-gradient(top, #f4f5f5, #dfdddd);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f4f5f5, endColorstr=#dfdddd); margin-top: 8px;width: 100%;">
+    </td>
+</tr>
+</tbody></table>
+</form>';
+    
+    return $output;
+}
+
 
