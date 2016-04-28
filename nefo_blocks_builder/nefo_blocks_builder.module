@@ -74,8 +74,8 @@ function _nefo_blocks_builder_nefo_footer_banner_content() {
             <a href="/schnittstellen/produkte/workshops">'. t('Workshops') .'</a>
         </div></div>
         <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col3">
-            <div class="nefo-footer-banner-col-link"><a class="nefo-footer-banner-col1-link" href=""></a></div>
-            <a >'. t('Newsletter') .'</a>
+            <div class="nefo-footer-banner-col-link"><a class="nefo-footer-banner-col1-link" href="/newsletter"></a></div>
+            <a href="/newsletter">'. t('Newsletter') .'</a>
         </div></div>
         <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col4">
             <div class="nefo-footer-banner-col-link"><a class="nefo-footer-banner-col1-link" href="/blogs"></a></div>
