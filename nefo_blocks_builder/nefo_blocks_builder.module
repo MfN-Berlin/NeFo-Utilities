@@ -28,6 +28,10 @@ function nefo_blocks_builder_block_info() {
     'description' => t('Newsletter subscription form for Press News'),
   );
   
+  $blocks['nefo_sidebar_banner'] = array(
+    'info' => t('NeFo Sidebar Banner'),
+  );
+  
   return $blocks;
 }
 
@@ -58,6 +62,10 @@ function nefo_blocks_builder_block_view($delta = '') {
       $block['subject'] = t('Press Distribution');
       $block['content'] = _nefo_newsletter2go_press_news_content();
       break;
+    case 'nefo_sidebar_banner':
+      $block['subject'] = '';
+      $block['content'] = _nefo_blocks_builder_nefo_sidebar_banner_content();
+      break;
   }
 
   return $block;
@@ -79,6 +87,29 @@ function _nefo_blocks_builder_nefo_footer_banner_content() {
         </div></div>
         <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col4">
             <div class="nefo-footer-banner-col-link"><a class="nefo-footer-banner-col1-link" href="/blogs"></a></div>
+            <a href="/blogs">'. t('NeFo Blogs') .'</a>
+        </div></div>
+      </div>';
+  
+  return $output;
+}
+
+function _nefo_blocks_builder_nefo_sidebar_banner_content() {
+  $output = '<div class="nefo-sidebar-banner">
+        <div class="nefo-sidebar-banner-col"><div class="nefo-sidebar-banner-col1">
+            <div class="nefo-sidebar-banner-col-link"><a class="nefo-sidebar-banner-col1-link" href="/schnittstellen/produkte"></a></div>
+            <a href="/schnittstellen/produkte">'. t('NeFo Products') .'</a>
+        </div></div>
+        <div class="nefo-sidebar-banner-col"><div class="nefo-sidebar-banner-col2">
+            <div class="nefo-sidebar-banner-col-link"><a class="nefo-sidebar-banner-col1-link" href="/schnittstellen/workshops"></a></div>
+            <a href="/schnittstellen/produkte/workshops">'. t('Workshops') .'</a>
+        </div></div>
+        <div class="nefo-sidebar-banner-col"><div class="nefo-sidebar-banner-col3">
+            <div class="nefo-sidebar-banner-col-link"><a class="nefo-sidebar-banner-col1-link" href="/newsletter"></a></div>
+            <a href="/newsletter">'. t('Newsletter') .'</a>
+        </div></div>
+        <div class="nefo-sidebar-banner-col"><div class="nefo-sidebar-banner-col4">
+            <div class="nefo-sidebar-banner-col-link"><a class="nefo-sidebar-banner-col1-link" href="/blogs"></a></div>
             <a href="/blogs">'. t('NeFo Blogs') .'</a>
         </div></div>
       </div>';
