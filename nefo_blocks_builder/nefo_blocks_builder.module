@@ -95,23 +95,41 @@ function _nefo_blocks_builder_nefo_footer_banner_content() {
 }
 
 function _nefo_blocks_builder_nefo_sidebar_banner_content() {
+  $img_path = '/'. drupal_get_path('theme', 'ofen') .'/images/icons';
+  
   $output = '<div class="nefo-sidebar-banner">
-        <div class="nefo-sidebar-banner-col"><div class="nefo-sidebar-banner-col1">
-            <div class="nefo-sidebar-banner-col-link"><a class="nefo-sidebar-banner-col1-link" href="/schnittstellen/produkte"></a></div>
-            <a href="/schnittstellen/produkte">'. t('NeFo Products') .'</a>
-        </div></div>
-        <div class="nefo-sidebar-banner-col"><div class="nefo-sidebar-banner-col2">
-            <div class="nefo-sidebar-banner-col-link"><a class="nefo-sidebar-banner-col1-link" href="/schnittstellen/workshops"></a></div>
-            <a href="/schnittstellen/produkte/workshops">'. t('Workshops') .'</a>
-        </div></div>
-        <div class="nefo-sidebar-banner-col"><div class="nefo-sidebar-banner-col3">
-            <div class="nefo-sidebar-banner-col-link"><a class="nefo-sidebar-banner-col1-link" href="/newsletter"></a></div>
-            <a href="/newsletter">'. t('Newsletter') .'</a>
-        </div></div>
-        <div class="nefo-sidebar-banner-col"><div class="nefo-sidebar-banner-col4">
-            <div class="nefo-sidebar-banner-col-link"><a class="nefo-sidebar-banner-col1-link" href="/blogs"></a></div>
-            <a href="/blogs">'. t('NeFo Blogs') .'</a>
-        </div></div>
+        <div class="nefo-sidebar-banner-row">
+            <span class="nefo-sidebar-banner-row-img">
+                <a href="/schnittstellen/produkte"><img src="'. $img_path .'/publikationen.png"></img></a>
+            </span>
+            <span class="nefo-sidebar-banner-row-link">
+                <a href="/schnittstellen/produkte">'. t('NeFo Products') .'</a>
+            </span>
+        </div>        
+        <div class="nefo-sidebar-banner-row">
+            <span class="nefo-sidebar-banner-row-img">
+                <a href="/schnittstellen/produkte"><img src="'. $img_path .'/workshops.png"></img></a>
+            </span>
+            <span class="nefo-sidebar-banner-row-link">
+                <a href="/schnittstellen/produkte">'. t('Workshops') .'</a>
+            </span>
+        </div>
+        <div class="nefo-sidebar-banner-row">
+            <span class="nefo-sidebar-banner-row-img">
+                <a href="/schnittstellen/produkte"><img src="'. $img_path .'/newsletter.png"></img></a>
+            </span>
+            <span class="nefo-sidebar-banner-row-link">
+                <a href="/schnittstellen/produkte">'. t('Newsletter') .'</a>
+            </span>
+        </div>        
+        <div class="nefo-sidebar-banner-row">
+            <span class="nefo-sidebar-banner-row-img">
+                <a href="/schnittstellen/produkte"><img src="'. $img_path .'/blog.png"></img></a>
+            </span>
+            <span class="nefo-sidebar-banner-row-link">
+                <a href="/schnittstellen/produkte">'. t('NeFo Blogs') .'</a>
+            </span>
+        </div>
       </div>';
   
   return $output;
