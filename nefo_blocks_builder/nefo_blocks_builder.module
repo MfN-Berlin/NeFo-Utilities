@@ -108,10 +108,10 @@ function _nefo_blocks_builder_nefo_sidebar_banner_content() {
         </div>        
         <div class="nefo-sidebar-banner-row">
             <span class="nefo-sidebar-banner-row-img">
-                <a href="/schnittstellen/workshops"><img src="'. $img_path .'/workshops.png"></img></a>
+                <a href="/schnittstellen/produkte/workshops"><img src="'. $img_path .'/workshops.png"></img></a>
             </span>
             <span class="nefo-sidebar-banner-row-link">
-                <a href="/schnittstellen/workshops">'. t('Workshops') .'</a>
+                <a href="/schnittstellen/produkte/workshops">'. t('Workshops') .'</a>
             </span>
         </div>
         <div class="nefo-sidebar-banner-row">
