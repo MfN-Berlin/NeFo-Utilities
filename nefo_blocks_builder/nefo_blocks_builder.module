@@ -108,26 +108,26 @@ function _nefo_blocks_builder_nefo_sidebar_banner_content() {
         </div>        
         <div class="nefo-sidebar-banner-row">
             <span class="nefo-sidebar-banner-row-img">
-                <a href="/schnittstellen/produkte"><img src="'. $img_path .'/workshops.png"></img></a>
+                <a href="/schnittstellen/workshops"><img src="'. $img_path .'/workshops.png"></img></a>
             </span>
             <span class="nefo-sidebar-banner-row-link">
-                <a href="/schnittstellen/produkte">'. t('Workshops') .'</a>
+                <a href="/schnittstellen/workshops">'. t('Workshops') .'</a>
             </span>
         </div>
         <div class="nefo-sidebar-banner-row">
             <span class="nefo-sidebar-banner-row-img">
-                <a href="/schnittstellen/produkte"><img src="'. $img_path .'/newsletter.png"></img></a>
+                <a href="/newsletter"><img src="'. $img_path .'/newsletter.png"></img></a>
             </span>
             <span class="nefo-sidebar-banner-row-link">
-                <a href="/schnittstellen/produkte">'. t('Newsletter') .'</a>
+                <a href="/newsletter">'. t('Newsletter') .'</a>
             </span>
         </div>        
         <div class="nefo-sidebar-banner-row">
             <span class="nefo-sidebar-banner-row-img">
-                <a href="/schnittstellen/produkte"><img src="'. $img_path .'/blog.png"></img></a>
+                <a href="/blogs"><img src="'. $img_path .'/blog.png"></img></a>
             </span>
             <span class="nefo-sidebar-banner-row-link">
-                <a href="/schnittstellen/produkte">'. t('NeFo Blogs') .'</a>
+                <a href="/blogs">'. t('NeFo Blogs') .'</a>
             </span>
         </div>
       </div>';
