@@ -74,19 +74,19 @@ function nefo_blocks_builder_block_view($delta = '') {
 function _nefo_blocks_builder_nefo_footer_banner_content() {
   $output = '<div class="nefo-footer-banner">
         <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col1">
-            <div class="nefo-footer-banner-col-link"><a class="nefo-footer-banner-col1-link" href="/schnittstellen/produkte"></a></div>
+            <div class="nefo-footer-banner-col-link"><a href="/schnittstellen/produkte"></a></div>
             <a href="/schnittstellen/produkte">'. t('NeFo Products') .'</a>
         </div></div>
         <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col2">
-            <div class="nefo-footer-banner-col-link"><a class="nefo-footer-banner-col1-link" href="/schnittstellen/workshops"></a></div>
+            <div class="nefo-footer-banner-col-link"><a href="/schnittstellen/workshops"></a></div>
             <a href="/schnittstellen/produkte/workshops">'. t('Workshops') .'</a>
         </div></div>
         <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col3">
-            <div class="nefo-footer-banner-col-link"><a class="nefo-footer-banner-col1-link" href="/newsletter"></a></div>
+            <div class="nefo-footer-banner-col-link"><a href="/newsletter"></a></div>
             <a href="/newsletter">'. t('Newsletter') .'</a>
         </div></div>
         <div class="nefo-footer-banner-col"><div class="nefo-footer-banner-col4">
-            <div class="nefo-footer-banner-col-link"><a class="nefo-footer-banner-col1-link" href="/blogs"></a></div>
+            <div class="nefo-footer-banner-col-link"><a href="/blogs"></a></div>
             <a href="/blogs">'. t('NeFo Blogs') .'</a>
         </div></div>
       </div>';
