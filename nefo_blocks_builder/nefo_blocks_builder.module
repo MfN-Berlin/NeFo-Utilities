@@ -59,8 +59,9 @@ function nefo_blocks_builder_block_view($delta = '') {
       $block['content'] = _nefo_newsletter2go_ipbes_news_content();
       break;
     case 'nefo_newsletter2go_press_news':
-      $block['subject'] = t('Press Distribution');
-      $block['content'] = _nefo_newsletter2go_press_news_content();
+      //$block['subject'] = t('Press Distribution');
+      //$block['content'] = _nefo_newsletter2go_press_news_content();
+      $block['content'] = _nefo_newsletter2go_press_news_button_content();
       break;
     case 'nefo_sidebar_banner':
       $block['subject'] = '';
@@ -306,4 +307,18 @@ function _nefo_newsletter2go_press_news_content() {
     return $output;
 }
 
+// Presseverteiler - Button only
+function _nefo_newsletter2go_press_news_button_content() {
+    $output = '<form id="nl2go--form" action="/presse/presseverteiler" method="post" accept-charset="utf-8">
+<table border="0"><tbody>
+<tr>
+    <td align="center">
+        <input type="submit" value="Zum Presseverteiler anmelden" name="nl2go--submit" id="nl2go--submit" style="cursor: pointer; border: 1px solid rgb(169, 192, 65); border-radius: 3px 3px 3px 3px; font-weight: bold; text-align: center; color: rgb(255, 255, 255); background-color: rgb(169, 192, 65); background-image: -moz-linear-gradient(center top , rgb(169, 192, 65), rgb(169, 192, 65)); padding: 4px 8px;  font-size: 100%; margin-top: 8px;width: 100%;">
+    </td>
+</tr>
+</tbody></table>
+</form>';
+    
+    return $output;
+}
 
