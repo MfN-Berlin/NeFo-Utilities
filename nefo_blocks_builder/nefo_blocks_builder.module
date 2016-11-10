@@ -32,6 +32,10 @@ function nefo_blocks_builder_block_info() {
     'info' => t('NeFo Sidebar Banner'),
   );
   
+  $blocks['nefo_language_switch'] = array(
+    'info' => t('NeFo Language Switch'),
+  );
+  
   return $blocks;
 }
 
@@ -66,6 +70,10 @@ function nefo_blocks_builder_block_view($delta = '') {
     case 'nefo_sidebar_banner':
       $block['subject'] = '';
       $block['content'] = _nefo_blocks_builder_nefo_sidebar_banner_content();
+      break;
+    case 'nefo_language_switch':
+      $block['subject'] = '';
+      $block['content'] = _nefo_blocks_builder_nefo_language_switch_content();
       break;
   }
 
@@ -319,6 +327,15 @@ function _nefo_newsletter2go_press_news_button_content() {
 </tbody></table>
 </form>';
     
-    return $output;
+  return $output;
 }
 
+// Language Switch DE EN
+function _nefo_blocks_builder_nefo_language_switch_content() {
+  $output = '<ul class="menu">
+<li class="first leaf"><a href="/de/" title="Deutsch">DE</a></li>
+<li class="last leaf"><a href="/en/welcome" title="English">EN</a></li>
+</ul>';
+
+  return $output;
+}
