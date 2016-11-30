@@ -36,6 +36,12 @@ function nefo_blocks_builder_block_info() {
     'info' => t('NeFo Language Switch'),
   );
   
+  $blocks['nefo_social_links_top'] = array(
+    'info' => t('NeFo Social Links Top'),
+  );
+  $blocks['nefo_social_links_bottom'] = array(
+    'info' => t('NeFo Social Links Bottom'),
+  );  
   return $blocks;
 }
 
@@ -74,6 +80,14 @@ function nefo_blocks_builder_block_view($delta = '') {
     case 'nefo_language_switch':
       $block['subject'] = '';
       $block['content'] = _nefo_blocks_builder_nefo_language_switch_content();
+      break;
+    case 'nefo_social_links_top':
+      $block['subject'] = '';
+      $block['content'] = _nefo_blocks_builder_nefo_social_links_content();
+      break;
+    case 'nefo_social_links_bottom':
+      $block['subject'] = '';
+      $block['content'] = _nefo_blocks_builder_nefo_social_links_content(TRUE);
       break;
   }
 
@@ -178,8 +192,7 @@ function _nefo_blocks_builder_nefo_feature_map_content() {
       'description' => array(
         '#type' => 'markup',
         '#markup' => '<p>' . t('Der NeFo Atlas der Forschungsakteure enthält aktuell '.
-          '1200 Einträge und 500 ForscherInnen Profile. Hier finden Sie die '.
-          'passenden ExpertInnen für Ihre Fragen zur biologischen Vielfalt.') . '</p>',
+          '1200 Einträge. Hier finden Sie die passenden ExpertInnen für Ihre Fragen zur biologischen Vielfalt.') . '</p>',
       ),
       'button' => array(
         '#type' => 'container',
@@ -336,6 +349,31 @@ function _nefo_blocks_builder_nefo_language_switch_content() {
 <li class="first leaf"><a href="/de/" title="Deutsch">DE</a></li>
 <li class="last leaf"><a href="/en/welcome" title="English">EN</a></li>
 </ul>';
+
+  return $output;
+}
+
+// Social Links
+function _nefo_blocks_builder_nefo_social_links_content($bottom=FALSE) {
+  $output = ($bottom) ? '<ul class="nefo-social-links-bottom">' : '<ul class="nefo-social-links-top">';
+  $output .= '<li class="youtube">
+        <a href="https://www.youtube.com/channel/UCTdzrOkdcGvLzCx2YX2JW1g" title="'. t('NeFo on YouTube') .'" target="_blank">
+            <i class="fa fa-youtube" aria-hidden="true"></i>
+        </a>
+    </li>
+    <li class="twitter">
+        <a href="https://twitter.com/ne_fo" title="'. t('NeFo on Twitter') .'" target="_blank">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+        </a>
+    </li>';
+  if ($bottom) {
+    $output .= '<li class="nefo-social-link-contact">
+            <a href="/kontakt" title="'. t('Contact') .'">
+                <i>'. t('Contact') .'</i>
+            </a>
+        </li>';
+  }
+  $output .= '</ul>';
 
   return $output;
 }
