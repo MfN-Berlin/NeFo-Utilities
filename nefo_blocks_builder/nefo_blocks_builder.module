@@ -28,10 +28,6 @@ function nefo_blocks_builder_block_info() {
     'description' => t('Newsletter subscription form for Press News'),
   );
   
-  $blocks['nefo_sidebar_banner'] = array(
-    'info' => t('NeFo Sidebar Banner'),
-  );
-  
   $blocks['nefo_language_switch'] = array(
     'info' => t('NeFo Language Switch'),
   );
@@ -62,20 +58,16 @@ function nefo_blocks_builder_block_view($delta = '') {
       break;
     case 'nefo_newsletter2go_biodiv_news':
       $block['subject'] = t('Biodiversity Research Newsletter');
-      $block['content'] = _nefo_newsletter2go_biodiv_news_content();
+      $block['content'] = _nefo_newsletter2go_content();
       break;
     case 'nefo_newsletter2go_ipbes_news':
       $block['subject'] = t('IPBES Newsletter');      
-      $block['content'] = _nefo_newsletter2go_ipbes_news_content();
+      $block['content'] = _nefo_newsletter2go_content(2);
       break;
     case 'nefo_newsletter2go_press_news':
       //$block['subject'] = t('Press Distribution');
-      //$block['content'] = _nefo_newsletter2go_press_news_content();
+      //$block['content'] = _nefo_newsletter2go_content(3);
       $block['content'] = _nefo_newsletter2go_press_news_button_content();
-      break;
-    case 'nefo_sidebar_banner':
-      $block['subject'] = '';
-      $block['content'] = _nefo_blocks_builder_nefo_sidebar_banner_content();
       break;
     case 'nefo_language_switch':
       $block['subject'] = '';
@@ -112,47 +104,6 @@ function _nefo_blocks_builder_nefo_footer_banner_content() {
             <div class="nefo-footer-banner-col-link"><a href="/blogs"></a></div>
             <a href="/blogs">'. t('NeFo Blogs') .'</a>
         </div></div>
-      </div>';
-  
-  return $output;
-}
-
-function _nefo_blocks_builder_nefo_sidebar_banner_content() {
-  $img_path = '/'. drupal_get_path('theme', 'ofen') .'/images/icons';
-  
-  $output = '<div class="nefo-sidebar-banner">
-        <div class="nefo-sidebar-banner-row">
-            <span class="nefo-sidebar-banner-row-img">
-                <a href="/schnittstellen/produkte"><img src="'. $img_path .'/publikationen.png"></img></a>
-            </span>
-            <span class="nefo-sidebar-banner-row-link">
-                <a href="/schnittstellen/produkte">'. t('NeFo Products') .'</a>
-            </span>
-        </div>        
-        <div class="nefo-sidebar-banner-row">
-            <span class="nefo-sidebar-banner-row-img">
-                <a href="/schnittstellen/produkte/workshops"><img src="'. $img_path .'/workshops.png"></img></a>
-            </span>
-            <span class="nefo-sidebar-banner-row-link">
-                <a href="/schnittstellen/produkte/workshops">'. t('Workshops') .'</a>
-            </span>
-        </div>
-        <div class="nefo-sidebar-banner-row">
-            <span class="nefo-sidebar-banner-row-img">
-                <a href="/newsletter"><img src="'. $img_path .'/newsletter.png"></img></a>
-            </span>
-            <span class="nefo-sidebar-banner-row-link">
-                <a href="/newsletter">'. t('Newsletter') .'</a>
-            </span>
-        </div>        
-        <div class="nefo-sidebar-banner-row">
-            <span class="nefo-sidebar-banner-row-img">
-                <a href="/blogs"><img src="'. $img_path .'/blog.png"></img></a>
-            </span>
-            <span class="nefo-sidebar-banner-row-link">
-                <a href="/blogs">'. t('NeFo Blogs') .'</a>
-            </span>
-        </div>
       </div>';
   
   return $output;
@@ -208,9 +159,26 @@ function _nefo_blocks_builder_nefo_feature_map_content() {
   return $block;
 }
 
-// Biodivdersitätsforschungs-Newsletter
-function _nefo_newsletter2go_biodiv_news_content() {
-    $output = '<form id="nl2go--form" action="https://app.newsletter2go.com/de/recipients/index/subscribe/" method="post" accept-charset="utf-8">
+// Newsletter2Go
+function _nefo_newsletter2go_content($type=1) {
+  switch($type) {
+    // IPBES-Newsletter
+    case 2:
+        $code = '806875c0512e5dec868db1f00057ece9fba0eca0a3c4d73075b9ef6897e983f2$11629';
+        $label = 'Zum Newsletter anmelden';
+        break;
+    // Presseverteiler
+    case 3:
+        $code = '24305dcf21fdb8f36ff3507cfd40ebbf9bbaf4e6b40fbb2d2544ea2c8acf7306$11628';
+        $label = 'Zum Presseverteiler anmelden';
+        break;
+    //Biodivdersitätsforschungs-Newsletter
+    default:        
+        $code = '3e8f7bb4d0700aa8605dc2eadc318fadbc6ccd9932ef6fc12d84778fb6f5b10b$11630';
+        $label = 'Zum Newsletter anmelden';
+  }
+  
+  $output = '<form id="nl2go--form" action="https://app.newsletter2go.com/de/recipients/index/subscribe/" method="post" accept-charset="utf-8">
 <table border="0"><tbody>
 <tr><td align="left" style="padding-right: 8px">E-Mail*
     </td>
@@ -237,94 +205,13 @@ function _nefo_newsletter2go_biodiv_news_content() {
     </td>
 </tr>
 <tr>
-    <td>
-    </td><td align="center"><input type="submit" value="Zum Newsletter anmelden" name="nl2go--submit" id="nl2go--submit" style="cursor: pointer; border: 1px solid rgb(169, 192, 65); border-radius: 3px 3px 3px 3px; font-weight: bold; text-align: center; color: rgb(255, 255, 255); background-color: rgb(169, 192, 65); background-image: -moz-linear-gradient(center top , rgb(169, 192, 65), rgb(169, 192, 65)); padding: 4px 8px;  font-size: 100%; margin-top: 8px;width: 100%;">
-<input type="hidden" name="nl2go--key" id="nl2go--key" value="3e8f7bb4d0700aa8605dc2eadc318fadbc6ccd9932ef6fc12d84778fb6f5b10b$11630"><noscript><a href="https://www.newsletter2go.de/newsletter-erstellen/" title="Newsletter erstellen mit Newsletter2Go">Newsletter erstellen mit Newsletter2Go</a></noscript>
+    <td colspan="2" align="center"><input type="submit" value="'. $label .'" name="nl2go--submit" id="nl2go--submit" class="nl2go--submit" style="cursor: pointer; border: 1px solid rgb(169, 192, 65); border-radius: 3px 3px 3px 3px; font-weight: bold; text-align: center; color: rgb(255, 255, 255); background-color: rgb(169, 192, 65); background-image: -moz-linear-gradient(center top , rgb(169, 192, 65), rgb(169, 192, 65)); padding: 4px 8px;  font-size: 100%; margin-top: 8px;width: 100%;">
+<input type="hidden" name="nl2go--key" id="nl2go--key" value="'. $code .'"><noscript><a href="https://www.newsletter2go.de/newsletter-erstellen/" title="Newsletter erstellen mit Newsletter2Go">Newsletter erstellen mit Newsletter2Go</a></noscript>
     </td>
 </tr>
 </tbody></table>
 </form>';
 
-    return $output;
-}
-
-// IPBES-Newsletter
-function _nefo_newsletter2go_ipbes_news_content() {
-    $output = '<form id="nl2go--form" action="https://app.newsletter2go.com/de/recipients/index/subscribe/" method="post" accept-charset="utf-8">
-<table border="0"><tbody>
-<tr><td align="left" style="padding-right: 8px">E-Mail*
-    </td>
-    <td>
-        <input type="text" name="nl2go--mail" id="nl2go--mail" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
-    </td>
-</tr>
-<tr><td align="left" style="padding-right: 8px">Vorname
-    </td>
-    <td>
-        <input type="text" name="nl2go--firstname" id="nl2go--firstname" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
-    </td>
-</tr>
-<tr><td align="left" style="padding-right: 8px">Nachname
-    </td>
-    <td>
-        <input type="text" name="nl2go--lastname" id="nl2go--lastname" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
-    </td>
-</tr>
-<tr><td align="left" style="padding-right: 8px">Institution
-    </td>
-    <td>
-        <input type="text" name="nl2go--60805" id="nl2go--60805" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
-    </td>
-</tr>
-<tr>
-    <td>
-    </td><td align="center"><input type="submit" value="Zum Newsletter anmelden" name="nl2go--submit" id="nl2go--submit" style="cursor: pointer; border: 1px solid rgb(169, 192, 65); border-radius: 3px 3px 3px 3px; font-weight: bold; text-align: center; color: rgb(255, 255, 255); background-color: rgb(169, 192, 65); background-image: -moz-linear-gradient(center top , rgb(169, 192, 65), rgb(169, 192, 65)); padding: 4px 8px;  font-size: 100%; margin-top: 8px;width: 100%;">
-<input type="hidden" name="nl2go--key" id="nl2go--key" value="806875c0512e5dec868db1f00057ece9fba0eca0a3c4d73075b9ef6897e983f2$11629"><noscript><a href="https://www.newsletter2go.de/features/newsletter-versand/" title="Newsletter Versand mit Newsletter2Go">Newsletter Versand mit Newsletter2Go</a></noscript>
-    </td>
-</tr>
-</tbody></table>
-</form>';
-    
-    return $output;
-}
-
-// Presseverteiler
-function _nefo_newsletter2go_press_news_content() {
-    $output = '<form id="nl2go--form" action="https://app.newsletter2go.com/de/recipients/index/subscribe/" method="post" accept-charset="utf-8">
-<table border="0"><tbody>
-<tr><td align="left" style="padding-right: 8px">E-Mail*
-    </td>
-    <td>
-        <input type="text" name="nl2go--mail" id="nl2go--mail" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
-    </td>
-</tr>
-<tr><td align="left" style="padding-right: 8px">Vorname
-    </td>
-    <td>
-        <input type="text" name="nl2go--firstname" id="nl2go--firstname" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
-    </td>
-</tr>
-<tr><td align="left" style="padding-right: 8px">Nachname
-    </td>
-    <td>
-        <input type="text" name="nl2go--lastname" id="nl2go--lastname" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
-    </td>
-</tr>
-<tr><td align="left" style="padding-right: 8px">Institution
-    </td>
-    <td>
-        <input type="text" name="nl2go--60805" id="nl2go--60805" style="background: #f4f4f4; border: 1px solid #cccccc; padding: 2px; width: 250px;">
-    </td>
-</tr>
-<tr>
-    <td>
-    </td><td align="center"><input type="submit" value="Zum Presseverteiler anmelden" name="nl2go--submit" id="nl2go--submit" style="cursor: pointer; border: 1px solid rgb(169, 192, 65); border-radius: 3px 3px 3px 3px; font-weight: bold; text-align: center; color: rgb(255, 255, 255); background-color: rgb(169, 192, 65); background-image: -moz-linear-gradient(center top , rgb(169, 192, 65), rgb(169, 192, 65)); padding: 4px 8px;  font-size: 100%; margin-top: 8px;width: 100%;">
-<input type="hidden" name="nl2go--key" id="nl2go--key" value="24305dcf21fdb8f36ff3507cfd40ebbf9bbaf4e6b40fbb2d2544ea2c8acf7306$11628"><noscript><a href="https://www.newsletter2go.de/newsletter-erstellen/" title="Newsletter erstellen mit Newsletter2Go">Newsletter erstellen mit Newsletter2Go</a></noscript>
-    </td>
-</tr>
-</tbody></table>
-</form>';
-    
     return $output;
 }
 
