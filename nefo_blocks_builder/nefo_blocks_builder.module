@@ -138,12 +138,16 @@ function _nefo_blocks_builder_nefo_feature_map_content() {
       ),
       'heading' => array(
         '#type' => 'markup',
-        '#markup' => '<h3>' . t('Forschungsatlas') . '</h3>',
+        '#markup' => '<h3>' . t('Research Map') . '</h3>',
       ),
       'description' => array(
         '#type' => 'markup',
-        '#markup' => '<p>' . t('Der NeFo Atlas der Forschungsakteure enthält aktuell '.
-          '1200 Einträge. Hier finden Sie die passenden ExpertInnen für Ihre Fragen zur biologischen Vielfalt.') . '</p>',
+        '#markup' => '<p>' . 
+            'Der NeFo-Atlas der Forschungsakteure enthält aktuell mehr als 1.300 Einträge. '.
+            'Diese helfen Ihnen, die passenden ExpertInnen für Ihre Fragen zur biologischen '.
+            'Vielfalt in universitären und außer-universitären Forschungsinstituten sowie NGOs, '.
+            'Unternehmen und öffentlichen Verwaltungen zu finden.' . 
+          '</p>',
       ),
       'button' => array(
         '#type' => 'container',
