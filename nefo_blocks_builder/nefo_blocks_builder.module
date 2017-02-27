@@ -245,8 +245,8 @@ function _nefo_newsletter2go_press_news_button_content() {
 // Language Switch DE EN
 function _nefo_blocks_builder_nefo_language_switch_content() {
   $output = '<ul class="menu">
-<li class="first leaf"><a href="/de/" title="Deutsch">DE</a></li>
-<li class="last leaf"><a href="/en/welcome" title="English">EN</a></li>
+<li class="first leaf"><a href="/" title="Deutsch">DE</a></li>
+<li class="last leaf"><a href="/en/" title="English">EN</a></li>
 </ul>';
 
   return $output;
