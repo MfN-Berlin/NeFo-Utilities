@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function nefo_view_modes_builder_entity_info_alter(&$entity_info) {
+  $entity_info['file']['view modes']['media_nefo_cover_photo'] = array(
+    'label' => t('Cover Photo'),
+    'custom settings' => TRUE,
+  );
+}
+
+

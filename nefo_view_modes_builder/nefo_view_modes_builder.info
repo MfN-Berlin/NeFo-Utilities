@@ -1,0 +1,11 @@
+name = NeFo View Modes Builder
+description = Build custom view modes.
+core = 7.x
+package = NEFO UTILITIES
+
+; Information added by NeFo
+version = "7.x-1.0"
+core = "7.x"
+
+
+
