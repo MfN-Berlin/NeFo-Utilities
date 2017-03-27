@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * Implements hook_wysiwyg_plugin().
+ */
+function nefo_default_link_target_wysiwyg_plugin($editor, $version) {
+  if ($editor == 'ckeditor') {
+    return array(
+      'default_target' => array(
+        'path' => drupal_get_path('module', 'nefo_default_link_target'),
+        'filename' => 'nefo_default_link_target.js',
+        'extensions' => array('default_target' => t('Default link target')),
+        'load' => TRUE,
+        'internal' => FALSE,
+        
+      ),
+    );
+  }
+}

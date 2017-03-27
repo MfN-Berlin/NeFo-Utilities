@@ -1,0 +1,12 @@
+name = NeFo Default Link Target
+description = Set default link target to _blank in the CKeditor link dialog box.
+core = 7.x
+package = NEFO UTILITIES
+dependencies[] = wysiwyg
+
+; Information added by NeFo
+version = "7.x-1.0"
+core = "7.x"
+
+
+
