@@ -33,8 +33,8 @@ function nefo_blocks_builder_block_info() {
   );
   // Calendar
   $blocks['nefo_calendar_ical_button'] = array(
-    'info' => t('Kalender iCal Button'),
-    'description' => t('Block für Kalender-Download'),
+    'info' => t('Calendar Download Button'),
+    'description' => t('Calendar download button'),
   );
 
   // Header and Footer
