@@ -31,6 +31,11 @@ function nefo_blocks_builder_block_info() {
     'info' => t('Newsletter2Go Bio-Div News Button'),
     'description' => t('Newsletter subscription button for Bio-Div News'),
   );
+  // Calendar
+  $blocks['nefo_calendar_ical_button'] = array(
+    'info' => t('Kalender iCal Button'),
+    'description' => t('Block für Kalender-Download'),
+  );
 
   // Header and Footer
   $blocks['nefo_footer_banner'] = array(
@@ -75,6 +80,9 @@ function nefo_blocks_builder_block_view($delta = '') {
       break;
     case 'nefo_newsletter2go_press_news':
       $block['content'] = _nefo_newsletter2go_button_content(3);
+      break;
+    case 'nefo_calendar_ical_button':
+      $block['content'] = _nefo_newsletter2go_button_content(10);
       break;
     // Header and Footer
     case 'nefo_footer_banner':
@@ -246,6 +254,11 @@ function _nefo_newsletter2go_button_content($type=1) {
     case 3:
         $action= '/presse/presseverteiler';
         $label = 'Zum Presseverteiler anmelden';
+        break;
+    // Calendar
+    case 10:
+        $action= 'webcal://biodiversity.de/kalender/all/kalender.ics';
+        $label = 'Kalender downloaden';
         break;
     //Biodivdersitätsforschungs-Newsletter
     default:
