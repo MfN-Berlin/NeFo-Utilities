@@ -6,38 +6,46 @@
 function nefo_blocks_builder_block_info() {
   $blocks = array();
 
-  $blocks['nefo_footer_banner'] = array(
-    'info' => t('NeFo Footer Banner'),
-  );
-  
+  // Frontpage
   $blocks['nefo_feature_map'] = array(
     'info' => t('Researchmap'),
     'description' => t('A block to feature the research map on the frontpage'),
   );
 
+  // Sidebar
+  // Newsletter Form
   $blocks['nefo_newsletter2go_biodiv_news'] = array(
-    'info' => t('Newsletter2Go Biodiv News'),
+    'info' => t('Newsletter2Go Biodiv News Form'),
     'description' => t('Newsletter subscription form for Biodiv News'),
   );
   $blocks['nefo_newsletter2go_ipbes_news'] = array(
-    'info' => t('Newsletter2Go IPBES News'),
+    'info' => t('Newsletter2Go IPBES News Form'),
     'description' => t('Newsletter subscription form for IPBES News'),
   );
+  // Newsletter Buttons
   $blocks['nefo_newsletter2go_press_news'] = array(
-    'info' => t('Newsletter2Go Press News'),
-    'description' => t('Newsletter subscription form for Press News'),
+    'info' => t('Newsletter2Go Press News Button'),
+    'description' => t('Newsletter subscription button for Press News'),
   );
-  
+  $blocks['nefo_newsletter2go_biodiv_btn'] = array(
+    'info' => t('Newsletter2Go Bio-Div News Button'),
+    'description' => t('Newsletter subscription button for Bio-Div News'),
+  );
+
+  // Header and Footer
+  $blocks['nefo_footer_banner'] = array(
+    'info' => t('NeFo Footer Banner'),
+  );
   $blocks['nefo_language_switch'] = array(
     'info' => t('NeFo Language Switch'),
   );
-  
   $blocks['nefo_social_links_top'] = array(
     'info' => t('NeFo Social Links Top'),
   );
   $blocks['nefo_social_links_bottom'] = array(
     'info' => t('NeFo Social Links Bottom'),
-  );  
+  );
+  
   return $blocks;
 }
 
@@ -48,14 +56,12 @@ function nefo_blocks_builder_block_view($delta = '') {
   $block = array();
 
   switch ($delta) {
-    case 'nefo_footer_banner':
-      $block['subject'] = '';
-      $block['content'] = _nefo_blocks_builder_nefo_footer_banner_content();
-      break;
+    // Frontpage
     case 'nefo_feature_map':
       $block['subject'] = '';
       $block['content'] = _nefo_blocks_builder_nefo_feature_map_content();
       break;
+    // Sidebar
     case 'nefo_newsletter2go_biodiv_news':
       $block['subject'] = t('Biodiversity Research Newsletter');
       $block['content'] = _nefo_newsletter2go_content();
@@ -64,10 +70,16 @@ function nefo_blocks_builder_block_view($delta = '') {
       $block['subject'] = t('IPBES Newsletter');      
       $block['content'] = _nefo_newsletter2go_content(2);
       break;
+    case 'nefo_newsletter2go_biodiv_btn':
+      $block['content'] = _nefo_newsletter2go_button_content(1);
+      break;
     case 'nefo_newsletter2go_press_news':
-      //$block['subject'] = t('Press Distribution');
-      //$block['content'] = _nefo_newsletter2go_content(3);
-      $block['content'] = _nefo_newsletter2go_press_news_button_content();
+      $block['content'] = _nefo_newsletter2go_button_content(3);
+      break;
+    // Header and Footer
+    case 'nefo_footer_banner':
+      $block['subject'] = '';
+      $block['content'] = _nefo_blocks_builder_nefo_footer_banner_content();
       break;
     case 'nefo_language_switch':
       $block['subject'] = '';
@@ -228,12 +240,24 @@ function _nefo_newsletter2go_content($type=1) {
 }
 
 // Presseverteiler - Button only
-function _nefo_newsletter2go_press_news_button_content() {
-    $output = '<form id="nl2go--form" action="/presse/presseverteiler" method="post" accept-charset="utf-8">
+function _nefo_newsletter2go_button_content($type=1) {
+  switch($type) {
+    // Presseverteiler
+    case 3:
+        $action= '/presse/presseverteiler';
+        $label = 'Zum Presseverteiler anmelden';
+        break;
+    //Biodivdersitätsforschungs-Newsletter
+    default:
+        $action= '/newsletter'; 
+        $label = 'Zum Newsletter anmelden';
+  }
+    
+  $output = '<form id="nl2go--form" action="'. $action .'" method="post" accept-charset="utf-8">
 <table border="0"><tbody>
 <tr>
     <td align="center">
-        <input type="submit" value="Zum Presseverteiler anmelden" name="nl2go--submit" id="nl2go--submit" style="cursor: pointer; border: 1px solid rgb(169, 192, 65); border-radius: 3px 3px 3px 3px; font-weight: bold; text-align: center; color: rgb(255, 255, 255); background-color: rgb(169, 192, 65); background-image: -moz-linear-gradient(center top , rgb(169, 192, 65), rgb(169, 192, 65)); padding: 4px 8px;  font-size: 100%; margin-top: 8px;width: 100%;">
+        <input type="submit" value="'. $label .'" name="nl2go--submit" id="nl2go--submit" style="cursor: pointer; border: 1px solid rgb(169, 192, 65); border-radius: 3px 3px 3px 3px; font-weight: bold; text-align: center; color: rgb(255, 255, 255); background-color: rgb(169, 192, 65); background-image: -moz-linear-gradient(center top , rgb(169, 192, 65), rgb(169, 192, 65)); padding: 4px 8px;  font-size: 100%; margin-top: 8px;width: 100%;">
     </td>
 </tr>
 </tbody></table>
