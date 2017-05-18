@@ -292,21 +292,27 @@ function _nefo_blocks_builder_nefo_language_switch_content() {
 // Social Links
 function _nefo_blocks_builder_nefo_social_links_content($bottom=FALSE) {
   $output = ($bottom) ? '<ul class="nefo-social-links-bottom">' : '<ul class="nefo-social-links-top">';
-  $output .= '<li class="linkedin">
-        <a href="https://www.linkedin.com/groups/6547429" title="'. t('NeFo on LinkedIn') .'" target="_blank">
-            <i class="fa fa-linkedin" aria-hidden="true"></i>
-        </a>
-  </li> 
-  <li class="youtube">
+  $output .= '<li class="youtube">
         <a href="https://www.youtube.com/channel/UCTdzrOkdcGvLzCx2YX2JW1g" title="'. t('NeFo on YouTube') .'" target="_blank">
             <i class="fa fa-youtube" aria-hidden="true"></i>
         </a>
-    </li>
-    <li class="twitter">
+  </li>
+  <li class="facebook">
+        <a href="https://www.facebook.com/NeFo.Biodiv" title="'. t('NeFo on Facebook') .'" target="_blank">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+        </a>
+  </li> 
+  <li class="linkedin">
+        <a href="https://www.linkedin.com/company/nefo" title="'. t('NeFo on LinkedIn') .'" target="_blank">
+            <i class="fa fa-linkedin" aria-hidden="true"></i>
+        </a>
+  </li> 
+  <li class="twitter">
         <a href="https://twitter.com/ne_fo" title="'. t('NeFo on Twitter') .'" target="_blank">
             <i class="fa fa-twitter" aria-hidden="true"></i>
         </a>
-    </li>';
+  </li>';
+    
   if ($bottom) {
     $output .= '<li class="nefo-social-link-contact">
             <a href="/kontakt" title="'. t('Contact') .'">
