@@ -8,6 +8,10 @@ function nefo_view_modes_builder_entity_info_alter(&$entity_info) {
     'label' => t('Cover Photo'),
     'custom settings' => TRUE,
   );
+  $entity_info['file']['view modes']['media_nefo_clickable_image_link'] = array(
+    'label' => t('Clickable Image Link'),
+    'custom settings' => TRUE,
+  );
 }
 
 
