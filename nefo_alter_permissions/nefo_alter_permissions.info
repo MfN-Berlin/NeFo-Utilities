@@ -1,0 +1,6 @@
+name = NeFo Alter Permissions
+description = Change access callbacks.
+dependencies[] = redhen
+package = NEFO UTILITIES
+core = 7.x
+version = "7.x-1.0"

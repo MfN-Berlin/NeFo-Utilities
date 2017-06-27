@@ -1,0 +1,9 @@
+<?php
+
+/**
+ * Implements hook_menu_alter().
+ */
+function nefo_alter_permissions_menu_alter(&$items) {
+  $items['admin/config/redhen']['access arguments'] = array('administer redhen');
+}
+
