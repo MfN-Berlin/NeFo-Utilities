@@ -50,7 +50,7 @@ function nefo_blocks_builder_block_info() {
   $blocks['nefo_social_links_bottom'] = array(
     'info' => t('NeFo Social Links Bottom'),
   );
-  
+
   return $blocks;
 }
 
@@ -72,7 +72,7 @@ function nefo_blocks_builder_block_view($delta = '') {
       $block['content'] = _nefo_newsletter2go_content();
       break;
     case 'nefo_newsletter2go_ipbes_news':
-      $block['subject'] = t('IPBES Newsletter');      
+      $block['subject'] = t('IPBES Newsletter');
       $block['content'] = _nefo_newsletter2go_content(2);
       break;
     case 'nefo_newsletter2go_biodiv_btn':
@@ -125,7 +125,7 @@ function _nefo_blocks_builder_nefo_footer_banner_content() {
             <a href="/blogs">'. t('NeFo Blogs') .'</a>
         </div></div>
       </div>';
-  
+
   return $output;
 }
 
@@ -170,11 +170,11 @@ function _nefo_blocks_builder_nefo_feature_map_content() {
       ),
       'description' => array(
         '#type' => 'markup',
-        '#markup' => '<p>' . 
+        '#markup' => '<p>' .
             'Der NeFo-Atlas der Forschungsakteure enthält aktuell mehr als 1.300 Einträge. '.
             'Diese helfen Ihnen, die passenden ExpertInnen für Ihre Fragen zur biologischen '.
             'Vielfalt in universitären und außer-universitären Forschungsinstituten sowie NGOs, '.
-            'Unternehmen und öffentlichen Verwaltungen zu finden.' . 
+            'Unternehmen und öffentlichen Verwaltungen zu finden.' .
           '</p>',
       ),
       'button' => array(
@@ -205,11 +205,11 @@ function _nefo_newsletter2go_content($type=1) {
         $label = 'Zum Presseverteiler anmelden';
         break;
     //Biodivdersitätsforschungs-Newsletter
-    default:        
+    default:
         $code = '3e8f7bb4d0700aa8605dc2eadc318fadbc6ccd9932ef6fc12d84778fb6f5b10b$11630';
         $label = 'Zum Newsletter anmelden';
   }
-  
+
   $output = '<form id="nl2go--form" action="https://app.newsletter2go.com/de/recipients/index/subscribe/" method="post" accept-charset="utf-8">
 <table border="0"><tbody>
 <tr><td align="left" style="padding-right: 8px">E-Mail*
@@ -262,10 +262,10 @@ function _nefo_newsletter2go_button_content($type=1) {
         break;
     //Biodivdersitätsforschungs-Newsletter
     default:
-        $action= '/newsletter'; 
+        $action= '/newsletter';
         $label = 'Zum Newsletter anmelden';
   }
-    
+
   $output = '<form id="nl2go--form" action="'. $action .'" method="post" accept-charset="utf-8">
 <table border="0"><tbody>
 <tr>
@@ -275,7 +275,7 @@ function _nefo_newsletter2go_button_content($type=1) {
 </tr>
 </tbody></table>
 </form>';
-    
+
   return $output;
 }
 
@@ -301,18 +301,18 @@ function _nefo_blocks_builder_nefo_social_links_content($bottom=FALSE) {
         <a href="https://www.facebook.com/NeFo.Biodiv" title="'. t('NeFo on Facebook') .'" target="_blank">
             <i class="fa fa-facebook" aria-hidden="true"></i>
         </a>
-  </li> 
+  </li>
   <li class="linkedin">
         <a href="https://www.linkedin.com/company/nefo" title="'. t('NeFo on LinkedIn') .'" target="_blank">
             <i class="fa fa-linkedin" aria-hidden="true"></i>
         </a>
-  </li> 
+  </li>
   <li class="twitter">
         <a href="https://twitter.com/ne_fo" title="'. t('NeFo on Twitter') .'" target="_blank">
             <i class="fa fa-twitter" aria-hidden="true"></i>
         </a>
   </li>';
-    
+
   if ($bottom) {
     $output .= '<li class="nefo-social-link-contact">
             <a href="/kontakt" title="'. t('Contact') .'">

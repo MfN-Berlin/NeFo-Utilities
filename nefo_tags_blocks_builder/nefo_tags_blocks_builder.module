@@ -1,0 +1,113 @@
+<?php
+
+/**
+ * Implements hook_block_info().
+ */
+function nefo_tags_blocks_builder_block_info() {
+  $blocks = array();
+  $terms = _nefo_tags_blocks_builder_get_terms();
+  foreach ($terms AS $term) {
+    $block_name = 'nefo_tags_tid_' . $term->tid;
+    $blocks[$block_name] = array(
+        'info' => 'Unsere Themen - ' . $term->name,
+        'description' => 'Aktuelle-Termine für Unsere Themen - ' . $term->name,
+    );
+  }
+
+  return $blocks;
+}
+
+/**
+* Implements hook_block_view().
+*/
+function nefo_tags_blocks_builder_block_view($delta = '') {
+  $block = array();
+  $terms = _nefo_tags_blocks_builder_get_terms();
+  foreach ($terms AS $term) {
+    $block_name = 'nefo_tags_tid_' . $term->tid;
+    if ($delta == $block_name) {
+      $block['subject'] = 'Aktuelle Events';
+      $block['content'] = _nefo_tags_blocks_builder_content($term);
+      break;
+    }
+  }
+
+  return $block;
+}
+
+/**
+ * Get list of terms
+ */
+function _nefo_tags_blocks_builder_get_terms() {
+  $vocabulary = taxonomy_vocabulary_machine_name_load('nefo_taxonomy_tags');
+  $terms = taxonomy_get_tree($vocabulary->vid);
+
+  return $terms;
+}
+
+/**
+ * Build block content
+ */
+function _nefo_tags_blocks_builder_content($term) {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'nefo_event')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->fieldCondition('field_nefo_taxonomy_tags', 'tid', $term->tid)
+    ->fieldCondition('field_nefo_event_date', 'value', date("Y-m-d"), '>=')
+    ->fieldOrderBy('field_nefo_event_date', 'value', 'ASC')
+    ->range(0, 5);
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+    $event_items_nids = array_keys($result['node']);
+    $event_items = entity_load('node', $event_items_nids);
+    $output = '<div class="view-content">'.
+        '<div class="item-list">'.
+        '<ul>';
+    foreach($event_items AS $nid => $node) {
+      $node_view = node_view($node);
+      // Date and Location
+      $output .= '<li class="views-row"> '.
+      '<div class="nefo-event--heading">';
+      $display = array(
+          'label' => 'hidden',
+          'settings' => array(
+              'format_type' => 'nefo_date_type_din5008',
+              'fromto' => 'value',
+              'multiple_number' => '',
+              'multiple_from' => '',
+              'multiple_to' => '',
+              'show_remaining_days' => 0,
+              )
+          );
+      $field = field_get_items('node', $node, 'field_nefo_event_date');
+      $fieldvalue = field_view_value('node', $node, 'field_nefo_event_date', $field[0], $display);
+      $header = '<span class="nefo-event--date">' .  drupal_render($fieldvalue) . '</span>';
+      $output .= l($header, 'node/'. $nid, array('html' => TRUE));
+      $output .= ' | ';
+      $display = array(
+          'label' => 'hidden',
+      );
+      $field = field_get_items('node', $node, 'field_nefo_event_location');
+      $fieldvalue = field_view_value('node', $node, 'field_nefo_event_location', $field[0], $display);
+      $header = '<span class="nefo-event--location">' .  drupal_render($fieldvalue) . '</span>';
+      $output .= l($header, 'node/'. $nid, array('html' => TRUE));
+      $output .= '</div>'; // nefo-event--heading
+      // Title
+      $output .= '<div class="nefo-event--title">'. l($node->title, 'node/'. $nid) . '</div>';
+      $output .= '</li>';
+    }// foreach()
+    $output .= '</ul></div>'.
+    '</div>'; // view-content
+    $output .= '<div class="more-link"><a href="/events">alle Events  </a></div>';
+  }
+  else {
+    $output = '<p>'. 'Leider haben wir zu diesem Thema aktuell keine Veranstaltungen in unserem Termindienst.' . '</p>';
+  }
+
+  return $output;
+}
+
+
+

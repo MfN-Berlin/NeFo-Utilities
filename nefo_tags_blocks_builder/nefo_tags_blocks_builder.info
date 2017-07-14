@@ -1,0 +1,6 @@
+name = NeFo-Tags Blocks Builder
+description = Build custom blocks for the taxonomy vocabulary NeFo-Tags.
+package = NEFO UTILITIES
+core = 7.x
+version = "7.x-1.0"
+
