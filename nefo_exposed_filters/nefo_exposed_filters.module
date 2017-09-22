@@ -4,11 +4,15 @@
  * Implements hook_form_alter().
  */
 function nefo_exposed_filters_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'views_exposed_form' &&
+  /**
+   * See ticket #398
+   * 
+   if ($form_id == 'views_exposed_form' &&
       $form_state['view']->name == 'nefo_view_list_news' &&
       $form_state['view']->current_display == 'page') {
-    $form['ctg']['#options']['pressrelease'] = t('NeFo Press Release');
-  }
+      $form['ctg']['#options']['pressrelease'] = t('NeFo Press Release');
+  }*/
+
 }
 
 /**

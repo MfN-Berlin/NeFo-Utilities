@@ -4,6 +4,9 @@
  * Implements hook_views_query_alter().
  */
 function nefo_exposed_filters_views_query_alter(&$view, &$query) {
+  /**
+   * See ticket #398
+   *
   if($view->name == 'nefo_view_list_news' && $view->current_display == 'page') {
     if (!empty($view->exposed_input['ctg']) && $view->exposed_input['ctg'] == 'pressrelease') {
       foreach ($query->where as &$condition_group) {
@@ -23,5 +26,6 @@ function nefo_exposed_filters_views_query_alter(&$view, &$query) {
         }
       }
     }
-  }
+  }*/
+
 }
