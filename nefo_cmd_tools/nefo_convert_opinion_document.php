@@ -3,7 +3,7 @@
  * NeFo-Produkt Stellungnahme
  */
 $source_node_type = 'nefo_product_opinion';
-$category_tid = 78;
+$category_tid = 77;
 $backup_file = '/local/apache/nefo/html/sites/all/modules/custom/nefo_utilities/nefo_cmd_tools/'. $source_node_type .'.json';
 
 $dest_node_type = 'nefo_product_document';

@@ -5,7 +5,7 @@
  */
 
 $source_node_type = 'nefo_product_report';
-$category_tid = 76;
+$category_tid = 79;
 $backup_file = '/local/apache/nefo/html/sites/all/modules/custom/nefo_utilities/nefo_cmd_tools/'. $source_node_type .'.json';
 
 $dest_node_type = 'nefo_product_document';
