@@ -122,14 +122,34 @@ function _nefo_blocks_builder_nefo_footer_banner_content() {
 
 function _nefo_blocks_builder_nefo_feature_map_content() {
   $map_url = 'forschung/forschungsakteure/forschungsatlas';
+   $image = array(
+     '#theme' => 'image_formatter',
+     '#item' => array(
+       'uri' => 'public://products/slideshow/nefo_forschungsatlas_screenshoot_16-03-2016.jpg',
+       'alt' => t('example image of research map.'),
+     ),
+     '#path' => array(
+       'path' => $map_url,
+       'options' => array('html' => TRUE), // Optional.
+     ),
+   );
   $block = array(
+     'image' => array(
+       '#type' => 'container',
+       '#attributes' => array('class' => array('feature-map-img')),
+       'title' => array(
+         '#type' => 'markup',
+         '#markup' => '<h2>' . t('Research Map') . '</h2>',
+       ),
+       'heading' => array(
+         '#type' => 'markup',
+         '#markup' => '<h3>' . t('Research Map') . '</h3>',
+       ),
+       'content' => $image,
+     ),
     'message' => array(
       '#type' => 'container',
       '#attributes' => array('class' =>array('feature-map-text')),
-      'title' => array(
-        '#type' => 'markup',
-        '#markup' => '<h2>' . t('Research Map') . '</h2>',
-      ),
       'description' => array(
         '#type' => 'markup',
         '#markup' => '<p>' .
@@ -141,7 +161,7 @@ function _nefo_blocks_builder_nefo_feature_map_content() {
       ),
       'button' => array(
         '#type' => 'container',
-        '#attributes' => array('class' =>array('btn btn--blue')),
+        '#attributes' => array('class' =>array('nefo-view-block-nav-link-all')),
         'link#' =>array(
           '#type' => 'link',
           '#title' => t('zum Forschungsatlas'),
