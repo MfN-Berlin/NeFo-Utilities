@@ -89,21 +89,31 @@ function nefo_preprocessor_preprocess_page(&$variables) {
   }
 
   // If content type "nefo_product_document" or "nefo_product_article" or "", add icon to title
-  if ((isset($variables['node']->type)) && (($variables['node']->type == 'nefo_product_document') || 
-        ($variables['node']->type == 'nefo_product_article') || ($variables['node']->type == 'nefo_product_interview'))) {
+  if ((isset($variables['node']->type)) && ( ($variables['node']->type == 'nefo_product_document') ||
+        ($variables['node']->type == 'nefo_product_article') || ($variables['node']->type == 'nefo_product_interview') ||
+        ($variables['node']->type == 'nefo_news') || ($variables['node']->type == 'nefo_video') )) {
+    $tid = 0;
+    if ($variables['node']->type == 'nefo_product_document') {
       $item = field_get_items('node', $variables['node'], 'field_nefo_taxonomy_document');
       $tid = intval($item[0]['tid']);
-      $icon = _nefo_preprocessor_get_product_document_icon($variables['node']->type, $tid);
+    }
+    elseif ($variables['node']->type == 'nefo_news') {
+      $item = field_get_items('node', $variables['node'], 'field_nefo_news_category');
+      $tid = intval($item[0]['tid']);
+    }
+    $icon = _nefo_preprocessor_get_product_document_icon($variables['node']->type, $tid, FALSE);
+    if (!empty($icon)) {
       $variables['title'] = '<span class="nefo-page-title-icon">'. $icon .'</span><span class="nefo-page-title-text">'. $variables['node']->title .'</span>';
+    }
   }
-  
 } //hook_preprocess_page()
 
 
 
-function _nefo_preprocessor_get_product_document_icon($node_type, $tid) {
+function _nefo_preprocessor_get_product_document_icon($node_type, $tid, $force=TRUE) {
   $path = drupal_get_path('theme', 'ofen');
   $type = _nefo_preprocessor_get_nefo_product_type($node_type, $tid);
+  $icon = '';
   switch ($type) {
         case 'nefo_product_article':
             $icon = '<img class="nefo-product-icon" alt="Artikel" title="Artikel" src="/'. $path .'/images/icons/products/Artikel.png">';
@@ -123,17 +133,28 @@ function _nefo_preprocessor_get_product_document_icon($node_type, $tid) {
         case 'nefo_product_study':
             $icon = '<img class="nefo-product-icon" alt="Studie" title="Studie" src="/'. $path .'/images/icons/products/Bericht.png">';
             break;
+        case 'nefo_product_press_release':
+            $icon = '<img class="nefo-product-icon" alt="Pressemitteilung" title="Pressemitteilung" src="/'. $path .'/images/icons/products/Pressemitteilung.png">';
+            break;
+        case 'nefo_video':
+            $icon = '<img class="nefo-product-icon" alt="Video" title="Video" src="/'. $path .'/images/icons/products/Video.png">';
+            break;
+  }//switch()
+
+  //  Icons were not provided for Workshop, News and Event
+  //  Workaround: Workshop => Bericht.png, News => Pressemitteilung.png, Event => Artikel.png
+  if ($force) {
+    switch ($type) {
         case 'nefo_product_workshop':
             $icon = '<img class="nefo-product-icon" alt="Workshop" title="Workshop" src="/'. $path .'/images/icons/products/Bericht.png">';
             break;
         case 'nefo_news':
-            $icon = '<img class="nefo-product-icon" alt="News" title="Workshop" src="/'. $path .'/images/icons/products/Pressemitteilung.png">';
+            $icon = '<img class="nefo-product-icon" alt="News" title="News" src="/'. $path .'/images/icons/products/Pressemitteilung.png">';
             break;
         case 'nefo_event':
-            $icon = '<img class="nefo-product-icon" alt="Event" title="Workshop" src="/'. $path .'/images/icons/products/Artikel.png">';
+            $icon = '<img class="nefo-product-icon" alt="Event" title="Event" src="/'. $path .'/images/icons/products/Artikel.png">';
             break;
-        default:
-            $icon = '';
+    }//switch()
   }
 
   return $icon;
@@ -182,8 +203,9 @@ function _nefo_preprocessor_get_product_display_link($node_type, $tid) {
 
 function _nefo_preprocessor_get_nefo_product_type($node_type, $tid) {
   $type = '';
-  // Taxonomy: NeFo-Dokument
+
   switch ($tid) {
+      // Taxonomy: NeFo-Dokument
       case 79:
         $type = 'nefo_product_report';
         break;
@@ -195,6 +217,10 @@ function _nefo_preprocessor_get_nefo_product_type($node_type, $tid) {
         break;
       case 78:
         $type = 'nefo_product_study';
+        break;
+      // Taxonomy: NeFo-News
+      case 75:
+        $type = 'nefo_product_press_release';
         break;
       default:
         $type = $node_type;
