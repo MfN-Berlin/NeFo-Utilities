@@ -12,6 +12,7 @@ function nefo_preprocessor_preprocess_block(&$variables) {
   if (!empty($block) && $block->module == 'views' && $block->delta == '6e8e5373cce47892c284f4934fe14c77') {
     $variables['classes_array'][] = drupal_html_class('nefo-further-topics-block');
   }
+
 } //hook_preprocess_block()
 
 /**
@@ -92,6 +93,18 @@ function nefo_preprocessor_preprocess_views_view_field(&$variables) {
     }
   }
 
+  /**
+   * View: NeFo-Block Workshop Tags
+   */
+  if (!empty($view) && $view->name == 'nefo_block_workshop_tags') {
+    if ($variables['field']->options['id'] == 'type') {
+      $tid = intval($variables['row']->taxonomy_term_data_field_data_field_nefo_taxonomy_document_t);
+      $node_type = $variables['row']->field_workshop_reference_node_type;
+      $icon = _nefo_preprocessor_get_product_document_icon($node_type, $tid);
+      $variables['output'] = _nefo_preprocessor_get_product_document_icon($node_type, $tid);
+    }
+  }
+
 } //hook_preprocess_views_view_field()
 
 
@@ -120,9 +133,10 @@ function nefo_preprocessor_preprocess_page(&$variables) {
   }
 
   // If content type "nefo_product_document" or "nefo_product_article" or "", add icon to title
-  if ((isset($variables['node']->type)) && ( ($variables['node']->type == 'nefo_product_document') ||
-        ($variables['node']->type == 'nefo_product_article') || ($variables['node']->type == 'nefo_product_interview') ||
-        ($variables['node']->type == 'nefo_news') || ($variables['node']->type == 'nefo_video') )) {
+  if ((isset($variables['node']->type)) && (
+        ($variables['node']->type == 'nefo_product_document') || ($variables['node']->type == 'nefo_product_article') || 
+        ($variables['node']->type == 'nefo_product_interview') || ($variables['node']->type == 'nefo_news') || 
+        ($variables['node']->type == 'nefo_video') || ($variables['node']->type == 'nefo_workshop')     )) {
     $tid = 0;
     if ($variables['node']->type == 'nefo_product_document') {
       $item = field_get_items('node', $variables['node'], 'field_nefo_taxonomy_document');
@@ -169,13 +183,16 @@ function _nefo_preprocessor_get_product_document_icon($node_type, $tid, $force=T
         case 'nefo_video':
             $icon = '<img class="nefo-product-icon" alt="Video" title="Video" src="/'. $path .'/images/icons/products/Video.png">';
             break;
+        case 'nefo_workshop':
+            $icon = '<img class="nefo-product-icon" alt="Workshop" title="Workshop" src="/'. $path .'/images/icons/products/Bericht.png">';
+            break;
   }//switch()
 
   //  Icons were not provided for Workshop, News and Event
   //  Workaround: Workshop => Bericht.png, News => Pressemitteilung.png, Event => Artikel.png
   if ($force) {
     switch ($type) {
-        case 'nefo_product_workshop':
+        case 'nefo_product_workshop':   // TODO: delete after migration
             $icon = '<img class="nefo-product-icon" alt="Workshop" title="Workshop" src="/'. $path .'/images/icons/products/Bericht.png">';
             break;
         case 'nefo_news':
