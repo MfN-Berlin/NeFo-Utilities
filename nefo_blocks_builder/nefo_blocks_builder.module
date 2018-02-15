@@ -11,7 +11,15 @@ function nefo_blocks_builder_block_info() {
     'info' => t('Researchmap'),
     'description' => t('A block to feature the research map on the frontpage'),
   );
-
+  // Page
+  $blocks['nefo_sponsor_ufz'] = array(
+    'info' => t('NeFo UFZ Sponsor'),
+    'description' => t('A block to feature the UFZ sponsor on the NeFo team page'),
+  );
+  $blocks['nefo_sponsor_mfn'] = array(
+    'info' => t('NeFo MfN Sponsor'),
+    'description' => t('A block to feature the MfN sponsor on the NeFo team page'),
+  );
   // Sidebar
   // Newsletter Buttons
   $blocks['nefo_newsletter2go_biodiv_news'] = array(
@@ -60,6 +68,13 @@ function nefo_blocks_builder_block_view($delta = '') {
     case 'nefo_feature_map':
       $block['subject'] = '';
       $block['content'] = _nefo_blocks_builder_nefo_feature_map_content();
+      break;
+    // Page
+    case 'nefo_sponsor_ufz':
+      $block['content'] = _nefo_blocks_builder_nefo_sponsors_content(1);
+      break;
+    case 'nefo_sponsor_mfn':
+      $block['content'] = _nefo_blocks_builder_nefo_sponsors_content(2);
       break;
     // Sidebar
     case 'nefo_newsletter2go_biodiv_news':
@@ -254,4 +269,55 @@ function _nefo_blocks_builder_nefo_social_links_content($bottom=FALSE) {
   $output .= '</ul>';
 
   return $output;
+}
+
+// NeFo Team Sponsors Block
+function _nefo_blocks_builder_nefo_sponsors_content($type = 1) {
+  $path = drupal_get_path('theme', 'ofen');
+
+  switch($type) {
+    // MfN
+    case 2:
+        $image_uri = $path . '/images/logos/mfn.svg';
+        $title = 'Museum für Naturkunde';
+        $description = '<p>' .
+            'Museum für Naturkunde<br />Invalidenstraße 43<br />10115 Berlin<br />' .
+            '<a href="https://www.museumfuernaturkunde.berlin/">www.museumfuernaturkunde.berlin</a>'.
+            '</p>';
+        break;
+    // UFZ
+    default:
+        $image_uri = $path . '/images/logos/ufz.png';
+        $title = 'Helmholtz-Zentrum für Umweltforschung GmbH';
+        $description = '<p>' .
+            'Helmholtz-Zentrum für Umweltforschung GmbH<br />Permoserstr. 15<br />04318 Leipzig<br />' .
+            '<a href="http://www.ufz.de/">www.ufz.de</a>'.
+            '</p>';
+  }
+
+  $image = array(
+     '#theme' => 'image_formatter',
+     '#item' => array(
+       'uri' => $image_uri,
+       'alt' => $title,
+     ),
+     '#prefix' => '<div class="nefo-block-sponsors-logo">',
+     '#suffix' => '</div>',
+   );
+  $block = array(
+    'image' => array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('nefo-block-sponsors-col')),
+      'title' => array(
+        '#type' => 'markup',
+      ),
+      'content' => $image,
+      'description' => array(
+        '#type' => 'markup',
+        '#markup' => $description,
+      ),
+    ),
+  );
+
+  return $block;
 }
