@@ -22,27 +22,6 @@ function nefo_preprocessor_preprocess_views_view_field(&$variables) {
   $view = $variables['view'];
   
   /**
-   * View: NeFo-Abstimmungsergebnisse
-   */
-  if (!empty($view) && $view->name == 'nefo_view_vote_results') {
-    // Average
-    if ($variables['field']->options['id'] == 'value_3') {
-      $average = $variables['row']->votingapi_cache_node_points_vote_average_value;
-      $variables['output'] = $average;
-    }
-    // Proportion of positive votes
-    if ($variables['field']->options['id'] == 'value_4') {
-      $proportion = round(intval($variables['row']->votingapi_cache_node_points_vote_positives_value) * 100  / intval($variables['row']->votingapi_cache_node_points_vote_count_value));
-      $variables['output'] = $proportion .'%';
-    }
-    // Proportion of negative votes
-    if ($variables['field']->options['id'] == 'value_6') {
-      $proportion = round(intval($variables['row']->votingapi_cache_node_points_vote_negatives_value) * -100 / intval($variables['row']->votingapi_cache_node_points_vote_count_value));
-      $variables['output'] = $proportion .'%';
-    }
-  }
-  
-  /**
    * View: NeFo-Übersichtstabelle Produkte per Begriff
    */
   if (!empty($view) && $view->name == 'nefo_view_list_products_by_term') {
