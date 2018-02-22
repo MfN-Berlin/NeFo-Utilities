@@ -130,6 +130,12 @@ function nefo_preprocessor_preprocess_page(&$variables) {
       $variables['title'] = '<span class="nefo-page-title-icon">'. $icon .'</span><span class="nefo-page-title-text">'. $variables['node']->title .'</span>';
     }
   }
+
+  // Bugfix: Metatags on frontpage
+  if (!empty($variables['is_front'])) {
+    $variables['metatag'] = render(metatag_metatags_view('global:frontpage', array()));
+  }
+
 } //hook_preprocess_page()
 
 
