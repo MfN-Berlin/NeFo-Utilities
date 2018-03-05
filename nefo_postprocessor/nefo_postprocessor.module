@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * Implements hook_node_postinsert().
+ */
+function nefo_postprocessor_node_postinsert($node) {
+
+  /**
+   * Content type: NeFo-Workshop
+   */
+  if (!empty($node) && $node->type == 'nefo_workshop') {
+    _nefo_postprocessor_event_from_workshop($node);
+  }
+
+} //hook_node_postinsert()
+
+/**
+ * Create Event using fields from Workshop node 
+ */
+function _nefo_postprocessor_event_from_workshop($node) {
+  $event_node = new stdClass();
+  $event_node->title = $node->title;
+  $event_node->type = 'nefo_event';
+  node_object_prepare($event_node);
+
+  $event_node->language = LANGUAGE_NONE; 
+  $event_node->uid = $node->uid;
+  $event_node->status = 1;
+  $event_node->promote = 0;
+  $event_node->comment = 0;
+
+  $event_node->field_nefo_event_desc[LANGUAGE_NONE][0]['value'] = $node->body[LANGUAGE_NONE][0]['summary'];
+  $event_node->field_nefo_event_date = $node->field_nefo_event_date;
+  $event_node->field_nefo_event_location = $node->field_nefo_event_location;
+  $event_node->field_nefo_taxonomy_tags = $node->field_nefo_taxonomy_tags;
+
+  $event_node = node_submit($event_node);
+  node_save($event_node);
+}

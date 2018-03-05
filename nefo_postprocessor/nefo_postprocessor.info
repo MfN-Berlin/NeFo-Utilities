@@ -1,0 +1,8 @@
+name = NeFo Postprocessor
+description = Custom post-processing functions.
+core = 7.x
+version = "7.x-1.0"
+package = NEFO UTILITIES
+dependencies[] = hook_post_action
+
+
