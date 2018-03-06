@@ -133,7 +133,8 @@ function nefo_preprocessor_preprocess_page(&$variables) {
 
   // Bugfix: Metatags on frontpage
   if (!empty($variables['is_front'])) {
-    $variables['metatag'] = render(metatag_metatags_view('global:frontpage', array()));
+    $metatag_output = metatag_metatags_view('global:frontpage', array());
+    $variables['metatag'] = render($metatag_output);
   }
 
 } //hook_preprocess_page()
