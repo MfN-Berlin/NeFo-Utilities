@@ -1,0 +1,6 @@
+name = NeFo Customise Editor
+description = Custom functions to override editor settings.
+core = 7.x
+version = "7.x-1.0"
+package = NEFO UTILITIES
+dependencies[] = wysiwyg

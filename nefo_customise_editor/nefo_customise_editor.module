@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * Implements hook_wysiwyg_editor_settings_alter().
+ */
+function nefo_customise_editor_wysiwyg_editor_settings_alter(&$settings, $context) {
+  /**
+   * Turn on SCAYT
+   */
+  if($context['profile']->editor == 'ckeditor') {
+    $settings['scayt_autoStartup'] = TRUE;
+    $settings['scayt_sLang'] = 'de_DE';
+  }
+  
+} //hook_wysiwyg_editor_settings_alter()
+
+
+/**
+ * Implements hook_wysiwyg_plugin().
+ */
+function nefo_customise_editor_wysiwyg_plugin($editor, $version) {
+  /**
+   * Set default link target to _blank in the CKeditor link dialog box.
+   */
+  if ($editor == 'ckeditor') {
+    return array(
+      'default_target' => array(
+        'path' => drupal_get_path('module', 'nefo_customise_editor'),
+        'filename' => 'nefo_default_link_target.js',
+        'extensions' => array('default_target' => t('Default link target')),
+        'load' => TRUE,
+        'internal' => FALSE,
+        
+      ),
+    );
+  }
+  
+} //hook_wysiwyg_plugin()
