@@ -1,0 +1,6 @@
+name = NeFo Actions
+description = Custom actions.
+core = 7.x
+version = "7.x-1.0"
+package = NEFO UTILITIES
+dependencies[] = pathauto

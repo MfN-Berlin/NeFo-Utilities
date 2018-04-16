@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * Implements hook_node_presave().
+ */
+function nefo_actions_node_presave($node){
+  /**
+   * Deactivate pathauto if a page already has a generated alias.
+   */
+  if(!empty($node->path['alias'])){
+    $node->path['pathauto'] = FALSE;
+  }
+
+} //hook_node_presave()
